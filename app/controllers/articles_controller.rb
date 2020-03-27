@@ -13,9 +13,13 @@ class ArticlesController < ApplicationController
 		@article = Article.new
 	end
 
+	def edit
+		@article = Article.find(params[:id])
+	end
+
 	def create
 		#render plain: params[:article] #otra forma de debuguear
-		@article = Article.new(params.require(:article).permit(:title, :description))
+		@article = Article.new(params.require(:article).permit(:title, :description)) #!!duda
 		#render plain: @article.inspect
 		if @article.save
 			flash[:notice] = "Article was created succesfully" #ayuda a mostrar mensajes
@@ -24,6 +28,18 @@ class ArticlesController < ApplicationController
 		else
 			render 'new' #regresa la pagina "new"
 		end
+	end
+
+	def update
+		@article = Article.find(params[:id])
+		#render plain: params[:article]
+		if @article.update(params.require(:article).permit(:title, :description))
+			flash[:notice] = "Article was updated succesfully"
+			redirect_to @article
+		else
+			render 'edit'
+		end
+
 	end
 
 end
