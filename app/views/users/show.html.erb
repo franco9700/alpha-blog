@@ -9,4 +9,11 @@
 </div>
 <hr>
 <h4 align="center" class="page-title"><%= @user.username %>/s articles </h4>
-<%= render 'articles/article', obj: @user.articles %>
+
+<div class="row col-sm-2 offset-sm-5" align="center">
+	<%= will_paginate @user_articles %>
+</div>
+<%= render 'articles/article', obj: @user_articles %>
+<div class="row col-sm-2 offset-sm-5" align="center">
+	<%= will_paginate @user_articles %>
+</div>
