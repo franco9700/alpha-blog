@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params) #!!duda
 		#render plain: @article.inspect
 		if @article.save
-			flash[:notice] = "Article was created succesfully" #ayuda a mostrar mensajes
+			flash[:success] = "Article was created succesfully" #ayuda a mostrar mensajes
 			#redirect_to article_path(@article)
 			redirect_to @article #version corta
 		else
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
 	def update
 		#render plain: params[:article]
 		if @article.update(article_params) #llamamos el metodo para refactorizar codigo
-			flash[:notice] = "Article was updated succesfully"
+			flash[:success] = "Article was updated succesfully"
 			redirect_to @article
 		else
 			render 'edit'
@@ -43,6 +43,7 @@ class ArticlesController < ApplicationController
 
 	def destroy
 		if @article.destroy
+			flash[:danger] = "Article was deleted succesfully"
 			redirect_to articles_path
 		end
 	end
