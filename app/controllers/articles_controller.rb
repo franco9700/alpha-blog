@@ -19,7 +19,8 @@ class ArticlesController < ApplicationController
 
 	def create
 		#render plain: params[:article] #otra forma de debuguear
-		@article = Article.new(article_params) #!!duda
+		@article = Article.new(article_params) #!!duda con params
+		@article.user = User.first
 		#render plain: @article.inspect
 		if @article.save
 			flash[:success] = "Article was created succesfully" #ayuda a mostrar mensajes
