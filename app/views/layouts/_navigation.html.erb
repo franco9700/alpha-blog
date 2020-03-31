@@ -34,8 +34,8 @@
            <%= gravatar_for current_user, size:40 %><%= " Admin" if current_user.admin? %>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <%= link_to "My articles", user_path(current_user), class: "dropdown-item"%>
           <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item"%>
-          <%= link_to "View your profile", user_path(current_user), class: "dropdown-item"%>
           <div class="dropdown-divider"></div>
           <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item"%>
         </div>

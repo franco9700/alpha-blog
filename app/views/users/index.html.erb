@@ -7,13 +7,22 @@
 		<ul class="listing">
 			<div class="row">
 				<div class="card col-md-4 offset-md-4">
-					<li><%= link_to gravatar_for(user), user_path(user) %></li>
-					<li class="article-title">
-						<%= link_to user.username, user_path(user) %>
-					</li>
-					<li>
-						<small><%= pluralize(user.articles.count, "article") if user.articles%></small>
-					</li>
+					<div class="card-body">
+						<li><%= link_to gravatar_for(user), user_path(user) %></li>
+						<li class="card-title article-title">
+							<%= link_to user.username, user_path(user) %>
+						</li>
+						<li class="card-text">
+							<small><%= pluralize(user.articles.count, "article") if user.articles%></small>
+						</li>
+						<% if logged_in? && current_user.admin? %>
+							<l1><%= link_to "Delete user", user_path(user), class: "btn btn-danger", method: :delete,
+									data: {confirm: "Are you sure you want to delete the user and all their articles?"} %>		
+							</l1>
+							<l1><%= link_to "Edit user", edit_user_path(user), class: "btn btn-primary" %>		
+							</l1>  
+						<% end %>
+					</div>
 				</div>
 			</div>
 		</ul>
