@@ -9,11 +9,15 @@
 </div>
 <hr>
 <h4 align="center" class="page-title"><%= @user.username %>'s articles </h4>
-
-<div class="row col-sm-2 offset-sm-5" align="center">
-	<%= will_paginate @user_articles %>
-</div>
-<%= render 'articles/article', obj: @user_articles %>
-<div class="row col-sm-2 offset-sm-5" align="center">
-	<%= will_paginate @user_articles %>
-</div>
+<% if !@user_articles.empty? %>
+	<div class="row col-sm-2 offset-sm-5" align="center">
+		<%= will_paginate @user_articles %>
+	</div>
+	<%= render 'articles/article', obj: @user_articles %>
+	<div class="row col-sm-2 offset-sm-5" align="center">
+		<%= will_paginate @user_articles %>
+	</div>
+<% else %>
+	<h2 align="center">The user does not have any articles yet</h2>
+	<h1 align="center" class="display-1">:(</h1>
+<% end %>
