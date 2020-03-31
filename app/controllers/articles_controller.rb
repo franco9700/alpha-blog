@@ -60,7 +60,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def require_same_user
-		if current_user != @article.user
+		if current_user != @article.user && !current_user.admin? #si no es el current user y no es admin no deja editar, con una que no se cumpla si entra al if
 			flash[:danger] = "You can only edit or delete your own articles"
 			redirect_to root_path
 		end

@@ -2,6 +2,7 @@
 	<div class="col-sm-8 offset-sm-2">
 		<% flash.each do |name, msg| %>
 			<div class='alert alert-<%="#{name}" %>'>
+				<%= "Admin action!: " if logged_in? && current_user.admin? %>
 				<%= msg %>
 				<a href="#" class="close" data-dismiss="alert">&#215;</a>
 				<% content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) #duda%>
