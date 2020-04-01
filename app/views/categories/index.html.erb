@@ -1,0 +1,25 @@
+<h1 align="center" class="page-title">Listing all categories</h1>
+
+<div class="col-sm-2 offset-md-5">
+	<%= will_paginate %>
+</div>
+
+<div align="center">
+	<% @categories.each do |category| %>
+		<ul class="listing">
+			<div class="row">
+				<div class="card col-md-4 offset-md-4">
+					<div class="card-body">
+						<li class="article-title card-title">
+							<%= link_to "#{category.name}", category_path(category) %>
+						</li>
+					</div>
+				</div>
+			</div>
+		</ul>
+	<% end %>
+</div>
+
+<div class="col-sm-2 offset-md-5">
+	<%= will_paginate %>
+</div>
