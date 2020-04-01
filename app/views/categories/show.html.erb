@@ -2,22 +2,31 @@
 <hr>
 
 <% if logged_in? && current_user.admin?%>
-	<div class="row col-sm-8 offset-sm-2">
-		<%= link_to 'New category', new_category_path, class: "btn btn-primary btn-block"%>
+	<div class="row">
+		<div class="col-sm-4 offset-sm-2">
+			<%= link_to 'New category', new_category_path, class: "btn btn-primary btn-block"%>
+		</div>
+		<div class="col-sm-4">
+			<%= link_to "Edit", edit_category_path(@category), class: "btn btn-secondary btn-block"%>
+		</div>
 	</div>
 <% end %>
 
 <br>
+<% if !@category_articles.empty?%>
+	<div class="row col-sm-2 offset-sm-5" align="center">
+		<%= will_paginate @category_articles%>
+	</div>
 
-<div class="row col-sm-2 offset-sm-5" align="center">
-	<%= will_paginate @category_articles%>
-</div>
+	<br>
+	<%= render 'articles/article', obj: @category_articles%>
 
-<br>
-<%= render 'articles/article', obj: @category_articles%>
+	<br>
 
-<br>
-
-<div class="row col-sm-2 offset-sm-5" align="center">
-	<%= will_paginate @category_articles%>
-</div>
+	<div class="row col-sm-2 offset-sm-5" align="center">
+		<%= will_paginate @category_articles%>
+	</div>
+<% else %>
+	<h2 align="center">There are no articles for this category yet</h2>
+	<h1 align="center" class="display-1">:(</h1>
+<% end %>
