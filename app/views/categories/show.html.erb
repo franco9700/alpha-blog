@@ -1,0 +1,23 @@
+<h1 align="center" class="page-title"><%= "Category: " + @category.name %></h1>
+<hr>
+
+<% if logged_in? && current_user.admin?%>
+	<div class="row col-sm-8 offset-sm-2">
+		<%= link_to 'New category', new_category_path, class: "btn btn-primary btn-block"%>
+	</div>
+<% end %>
+
+<br>
+
+<div class="row col-sm-2 offset-sm-5" align="center">
+	<%= will_paginate @category_articles%>
+</div>
+
+<br>
+<%= render 'articles/article', obj: @category_articles%>
+
+<br>
+
+<div class="row col-sm-2 offset-sm-5" align="center">
+	<%= will_paginate @category_articles%>
+</div>
