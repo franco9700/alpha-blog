@@ -1,0 +1,16 @@
+- if obj.errors.any?
+	.row
+		.col-sm-8.offset-md-2
+			.card.border-danger.mb-3
+				.card-body.text-danger
+					%h4.card-title
+						= pluralize(obj.errors.count, "error")
+						prohibited this article from being saved:
+					.card-text
+						%ul
+							= obj.errors.full_messages.each do |msg|
+								%li= msg
+
+
+
+							
